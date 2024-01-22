@@ -13,6 +13,13 @@
   }
 }
 
+.delete{
+  background-color: brown;
+  color: white;
+  padding: 4px;
+  border-radius: 6px;
+  cursor: pointer;
+}
 .nav-bar-wrapper a{
   padding-left: 30px;
 }

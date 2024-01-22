@@ -20,6 +20,7 @@ const Header = () => {
             {localStorage.getItem("user-info") ? (
               <>
                 <Nav className="me-auto nav-bar-wrapper">
+                  <Link to="/">Product List</Link>
                   <Link to="/add">Add Product</Link>
                   <Link to="/update">Update Product</Link>
                   {/* <NavDropdown title="Dropdown" id="collapsible-nav-dropdown">
