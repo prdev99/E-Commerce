@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -6,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 const Header = () => {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user-info"));
+  console.log("error user", user);
   function logout() {
     localStorage.clear();
     navigate("/sign_in");
@@ -13,8 +15,19 @@ const Header = () => {
   return (
     <>
       <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
+        <Navbar.Brand>
+          <Link
+            to="/"
+            style={{
+              textDecoration: "none",
+              color: "inherit",
+              padding: "30px",
+            }}
+          >
+            E Commerce App
+          </Link>
+        </Navbar.Brand>
         <Container>
-          <Navbar.Brand href="#home">E Commerce App</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             {localStorage.getItem("user-info") ? (
@@ -46,8 +59,14 @@ const Header = () => {
             )}
             {localStorage.getItem("user-info") ? (
               <Nav>
-                <NavDropdown title={user && user.email}>
-                  <NavDropdown.Item>Profile</NavDropdown.Item>
+                <NavDropdown title={user.user.email}>
+                  <NavDropdown.Item
+                    onClick={() => {
+                      navigate("/user_profile", { state: { user } });
+                    }}
+                  >
+                    Profile
+                  </NavDropdown.Item>
                   <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
                 </NavDropdown>
               </Nav>
